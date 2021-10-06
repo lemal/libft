@@ -1,6 +1,6 @@
 NAME	=	libft.a
 
-SRCS	=	ft_putstr.c
+SRCS	=	first_five.c
 OBJS	=	${SRCS:.c=.o}
 
 CC		=	gcc
@@ -12,9 +12,11 @@ ${NAME}	:	${OBJS}
 	ar rc  ${NAME} ${OBJS} libft.h
 	ranlib ${NAME}
 
+#remove this!!
 compsource:	${NAME} main.c
 	${CC} ${CFLAGS} -c main.c
 	${CC} ${CFLAGS} main.o -L. -lft -o test_prog
+#remove this!!
 
 all:	${NAME}
 
