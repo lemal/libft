@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tapulask <tapulask@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/07 10:36:44 by tapulask          #+#    #+#             */
-/*   Updated: 2021/10/07 10:36:46 by tapulask         ###   ########.fr       */
+/*   Created: 2021/10/07 15:47:15 by tapulask          #+#    #+#             */
+/*   Updated: 2021/10/07 15:47:18 by tapulask         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#ifndef LIBFT_H
-# define LIBFT_H
-# include <string.h>
+void	*ft_memset(void	*b, int	c, size_t	len)
+{
+	size_t			i;
+	unsigned char	temp_rev;
+	unsigned char	*temp;
 
-int		ft_isalpha(int	c);
-int		ft_isdigit(int	c);
-int		ft_isalnum(int	c);
-int		ft_isascii(int	c);
-int		ft_isprint(int	c);
-size_t	ft_strlen(const	char	*s);
-void	*ft_memset(void	*b, int	c, size_t	len);
-int		ft_toupper(int	c);
-int		ft_tolower(int	c);
-int		ft_atoi(const	char	*str);
-char	*ft_itoa(int	n);
-#endif
+	i = 0;
+	temp = b;
+	while (i < len)
+	{
+		temp[i] = (c % 10) - '0';
+		c = c / 10;
+		i++;
+	}
+	i = 0;
+	while (i < len)
+	{
+		temp_rev = temp[i];
+		temp[i] = temp[len - 1];
+		temp[len - 1] = temp_rev;
+		i++;
+	}
+	return (temp);
+}
