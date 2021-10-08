@@ -1,16 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tapulask <tapulask@student.21-schoo>       +#+  +:+       +#+        */
+/*   By: tapulask <tapulask@studet.21-school>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/07 15:02:17 by tapulask          #+#    #+#             */
-/*   Updated: 2021/10/07 15:02:19 by tapulask         ###   ########.fr       */
+/*   Created: 2021/10/08 10:33:12 by tapulask          #+#    #+#             */
+/*   Updated: 2021/10/08 10:33:14 by tapulask         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-char	*ft_itoa(int	n)
+void	*ft_memcpy(void	*dst, const	void	*src, size_t	n)
 {
-	
+	size_t				i;
+	unsigned char		*temp;
+	const unsigned char	*temp_2;
+
+	i = 0;
+	temp = dst;
+	temp_2 = src;
+	while (i < n)
+	{
+		temp[i] = temp_2[i];
+		i++;
+	}
+	return (dst);
 }

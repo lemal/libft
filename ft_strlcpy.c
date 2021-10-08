@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tapulask <tapulask@student.21-schoo>       +#+  +:+       +#+        */
+/*   By: tapulask <tapulask@studet.21-school>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/07 15:02:17 by tapulask          #+#    #+#             */
-/*   Updated: 2021/10/07 15:02:19 by tapulask         ###   ########.fr       */
+/*   Created: 2021/10/08 11:47:29 by tapulask          #+#    #+#             */
+/*   Updated: 2021/10/08 11:47:32 by tapulask         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_itoa(int	n)
+#include "libft.h"
+
+size_t	ft_strlcpy(char	*dst, const	char	*src, size_t	dstsize)
 {
 	
 }

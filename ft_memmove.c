@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tapulask <tapulask@student.21-schoo>       +#+  +:+       +#+        */
+/*   By: tapulask <tapulask@studet.21-school>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/07 15:02:17 by tapulask          #+#    #+#             */
-/*   Updated: 2021/10/07 15:02:19 by tapulask         ###   ########.fr       */
+/*   Created: 2021/10/08 10:56:21 by tapulask          #+#    #+#             */
+/*   Updated: 2021/10/08 10:56:23 by tapulask         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-char	*ft_itoa(int	n)
+void	*ft_memmove(void	*dst, const	void	*src, size_t	len)
 {
 	
 }
