@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tapulask <tapulask@student.21-schoo>       +#+  +:+       +#+        */
+/*   By: tapulask <tapulask@studet.21-school>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/07 15:02:17 by tapulask          #+#    #+#             */
-/*   Updated: 2021/10/07 15:02:19 by tapulask         ###   ########.fr       */
+/*   Created: 2021/10/08 11:50:19 by tapulask          #+#    #+#             */
+/*   Updated: 2021/10/08 11:50:22 by tapulask         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-char	*ft_itoa(int	n)
+size_t	ft_strlcat(char	*dst, const	char	*src, size_t	dstsize)
 {
-	
+
 }
