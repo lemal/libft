@@ -12,5 +12,17 @@
 
 char	*ft_strrchr(const	char	*s, int	c)
 {
-	
+	char	temp;
+
+	temp = (char)c;
+	c = 0;
+	while (s[c])
+		c++;
+	while (c >= 0)
+	{
+		if (s[c] == temp)
+			return ((char *)&s[c]);
+		c--;
+	}
+	return ((void *)0);
 }
