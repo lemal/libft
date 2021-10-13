@@ -13,5 +13,20 @@
 
 size_t	ft_strlcat(char	*dst, const	char	*src, size_t	dstsize)
 {
+	size_t	lendst;
 
+	lendst = ft_strlen(dst);
+	if (dstsize > 0)
+	{
+		dst += lendst;
+		while ((*src != '\0') && (lendst < dstsize))
+		{
+			*dst = *src;
+			src++;
+			dst++;
+			lendst++;
+		}
+		return (lendst);
+	}
+	return (lendst);
 }
