@@ -15,31 +15,29 @@
 char	*ft_strnstr(const	char
 		*haystack, const	char	*needle, size_t	len)
 {
-	size_t	count;
+	size_t	i;
+	size_t	j;
+	size_t	k;
 
+	i = 0;
 	if (*needle == '\0')
 		return ((char *)haystack);
-	count = 0;
-	while (*haystack && len > 0)
+	else if (*needle != '\0')
 	{
-		while (*haystack == *needle)
+		while ((haystack[i] != '\0') && (i < len))
 		{
-			haystack++;
-			needle++;
-			count++;
+			j = i;
+			k = 0;
+			while ((haystack[j] == needle[k])
+				&& (needle[k] != '\0') && (j < len))
+			{
+				j++;
+				k++;
+			}
+			if (needle[k] == '\0')
+				return ((char *)(haystack + i));
+			i++;
 		}
-		if (*needle == '\0')
-		{
-			haystack -= count;
-			needle -= count;
-			count = 0;
-		}
-		else if (*needle == '\0')
-		{
-			haystack -= count;
-			return ((char *)haystack);
-		}
-		len--;
 	}
 	return ((void *)0);
 }
