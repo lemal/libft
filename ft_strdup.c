@@ -1,22 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tapulask <tapulask@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/18 13:18:24 by tapulask          #+#    #+#             */
-/*   Updated: 2021/10/18 13:18:26 by tapulask         ###   ########.fr       */
+/*   Created: 2021/10/18 12:51:14 by tapulask          #+#    #+#             */
+/*   Updated: 2021/10/18 12:51:16 by tapulask         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include <stdio.h>
 
-void	ft_putstr_fd(char	*s, int	fd)
+char	*ft_strdup(const	char	*s1)
 {
-	while (*s)
-	{	
-		write(fd, &(*s), 1);
-		s++;
-	}
+	
 }

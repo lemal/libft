@@ -1,22 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tapulask <tapulask@student.21-schoo>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/18 13:18:24 by tapulask          #+#    #+#             */
-/*   Updated: 2021/10/18 13:18:26 by tapulask         ###   ########.fr       */
+/*   Created: 2021/10/18 13:19:36 by tapulask          #+#    #+#             */
+/*   Updated: 2021/10/18 13:19:38 by tapulask         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include <stdio.h>
 
-void	ft_putstr_fd(char	*s, int	fd)
+void	ft_putnbr_fd(int	n, int	fd)
 {
-	while (*s)
-	{	
-		write(fd, &(*s), 1);
-		s++;
-	}
+
 }
