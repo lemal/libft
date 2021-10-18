@@ -13,25 +13,33 @@
 
 size_t	ft_strlcat(char	*dst, const	char	*src, size_t	dstsize)
 {
-	size_t	lensrc;
-	size_t	lendst;
+	size_t	count_src;
+	size_t	count_dst;
 	size_t	i;
+	size_t	j;
+	size_t	dst_temp;
 
-	lensrc = ft_strlen(src);
-	lendst = ft_strlen(dst);
-	i = lendst;
-	if ((dstsize > 0) && ((lendst + lensrc - 1) < dstsize))
+	dst_temp = dstsize;
+	i = 0;
+	j = 0;
+	count_src = 0;
+	count_dst = 0;
+	while (src[count_src])
+		count_src++;
+	while (dst[count_dst] && dst_temp != 0)
 	{
-		dst += i;
-		while ((*src) && (i - 1 < dstsize) && ((lendst + lensrc - 1) < dstsize))
-		{
-			*dst = *src;
-			src++;
-			dst++;
-			i++;
-		}
-		*dst = '\0';
-		return (i);
+		count_dst++;
+		dst_temp--;
 	}
-	return (ft_strlen(src));
+	i += count_dst;
+	if (dst_temp == 0)
+		return (count_src + count_dst);
+	while (i < (dstsize - 1) && src[j])
+	{
+		dst[i] = src[j];
+		i++;
+		j++;
+	}
+	dst[i] = '\0';
+	return (i - j + count_src);
 }
