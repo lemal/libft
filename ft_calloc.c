@@ -11,14 +11,36 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "errno.h"
+#include <errno.h>
+#include <stdlib.h>
+
+static	void	local_bzero(void	*s, size_t	n)
+{
+	size_t			i;
+	unsigned char	*temp;
+
+	if (n > 0)
+	{
+		i = 0;
+		temp = s;
+		while (i < n)
+		{
+			temp[i] = '\0';
+			i++;
+		}
+	}
+}
 
 void	*ft_calloc(size_t	count, size_t	size)
 {
-	if (size % count != 0)
+	void	*ptr;
+
+	ptr = malloc(size * count);
+	if (ptr == NULL)
 	{
 		errno = ENOMEM;
 		return ((void *)0);
 	}
-
+	local_bzero(ptr, size * count);
+	return (ptr);
 }
