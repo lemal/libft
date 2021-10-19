@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
+#include <stdio.h>
 
 void	*ft_memcpy(void	*dst, const	void	*src, size_t	n)
 {
@@ -20,7 +21,7 @@ void	*ft_memcpy(void	*dst, const	void	*src, size_t	n)
 	i = 0;
 	temp = dst;
 	temp_2 = src;
-	while (i < n)
+	while ((i < n) && (temp[i]))
 	{
 		temp[i] = temp_2[i];
 		i++;
