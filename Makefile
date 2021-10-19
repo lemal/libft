@@ -13,15 +13,17 @@ SRCS	=	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 OBJS	=	${SRCS:.c=.o}
 
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror -I${HDR}
 
 RM		= rm -f
 
-${NAME}	:	${OBJS} ${HDR}
-	ar rc  ${NAME} ${OBJS} ${HDR}
-	ranlib ${NAME}
+.PHONY:	all clean fclean re
 
 all:	${NAME}
+
+${NAME}	:	${OBJS} ${HDR}
+	ar rc  ${NAME} $?
+	ranlib ${NAME}
 
 clean:	
 	${RM} ${OBJS}
@@ -30,5 +32,3 @@ fclean:		clean
 	${RM} ${NAME}
 
 re:		fclean all
-
-.PHONY:	all clean fclean re
