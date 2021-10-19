@@ -14,7 +14,7 @@
 #include <errno.h>
 #include <stdlib.h>
 
-static	void	local_bzero(void	*s, size_t	n)
+static	void	ft_local_bzero(void	*s, size_t	n)
 {
 	size_t			i;
 	unsigned char	*temp;
@@ -41,6 +41,6 @@ void	*ft_calloc(size_t	count, size_t	size)
 		errno = ENOMEM;
 		return ((void *)0);
 	}
-	local_bzero(ptr, size * count);
+	ft_local_bzero(ptr, size * count);
 	return (ptr);
 }
