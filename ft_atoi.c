@@ -10,10 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <limits.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
+#include "libft.h"
+#include "limits.h"
 
 static	int	ft_local_checks(size_t	num, int	minus)
 {
