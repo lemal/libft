@@ -10,90 +10,59 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
 
-static	void	ft_local_filler(int	n, char	*mmryspace, int	index)
+static	int	ft_local_dig_cnt(int	cpy_n)
+{
+	int		i;
+
+	i = 0;
+	while (cpy_n != 0)
+	{
+		cpy_n = cpy_n / 10;
+		i++;
+	}
+	return (i);
+}
+
+static	void	ft_local_filler(int	n,
+	char	*mmryspace, int	index, int	neg_flag)
 {
 	unsigned int	num;
 
-	if (n < 0)
-	{
-		mmryspace[index] = '-';
-		index++;
-		n *= -1;
-	}
 	num = (unsigned int)n;
-	if ((num / 10) != 0)
-		ft_local_filler(num / 10, mmryspace, index + 1);
+	if (index != 0)
+		ft_local_filler(num / 10, mmryspace, index - 1, neg_flag);
+	if (neg_flag == 1)
+		index++;
 	mmryspace[index] = (num % 10) + '0';
 }
 
 char	*ft_itoa(int	n)
 {
 	int		i;
-	int 	cpy_n;
+	int		flag_n;
 	char	*ptr_to_first;
 
-	i = 0;
-	cpy_n = n;
-	while (cpy_n != 0)
-	{
-		cpy_n = cpy_n / 10;
-		i++;
-	}
-	ptr_to_first = (char *)malloc(sizeof(char) * (i + 1));
+	i = ft_local_dig_cnt(n);
+	flag_n = 0;
+	if (n == 0)
+		i = 1;
+	if (n < 0)
+		flag_n = 1;
+	ptr_to_first = (char *)malloc(sizeof(char) * (i + flag_n + 1));
 	if (ptr_to_first == NULL)
 		return (NULL);
-	ft_local_filler(n, ptr_to_first, 0);
-	return (ptr_to_first);
-}
-
-int main (void)
-{
-	printf("%s", ft_itoa(-12252333));
-	return (0);
-}
-/*
-static	void	ft_local_filler(int	n, char	*mmryspace, int	index)
-{
-	unsigned int	num;
-
+	flag_n = 0;
 	if (n < 0)
 	{
-		mmryspace[index] = '-';
-		index++;
+		ptr_to_first[0] = '-';
 		n *= -1;
+		flag_n = 1;
 	}
-	num = (unsigned int)n;
-	if ((num / 10) != 0)
-		ft_local_filler(num / 10, mmryspace, index + 1);
-	mmryspace[index] = (num % 10) + '0';
-}
-
-char	*ft_itoa(int	n)
-{
-	int		i;
-	int 	cpy_n;
-	char	*ptr_to_first;
-
-	i = 0;
-	cpy_n = n;
-	while (cpy_n != 0)
-	{
-		cpy_n = cpy_n / 10;
-		i++;
-	}
-	ptr_to_first = (char *)malloc(sizeof(char) * (i + 1));
-	if (ptr_to_first == NULL)
-		return (NULL);
-	ft_local_filler(n, ptr_to_first, 0);
+	ft_local_filler(n, ptr_to_first, i - 1, flag_n);
+	ptr_to_first[i + 1] = '\0';
 	return (ptr_to_first);
 }
-
-int main (void)
-{
-	printf("%s", ft_itoa(-12252333));
-	return (0);
-}
-*/
