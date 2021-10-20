@@ -11,22 +11,21 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "limits.h"
 
 static	int	ft_local_checks(size_t	num, int	minus)
 {
 	if (minus == -1)
 	{
-		if (num * minus >= (size_t)INT_MIN)
+		if (num * minus >= (size_t)(-2147483648))
 			return ((int)(num * minus));
-		else if (num * minus < (size_t)INT_MIN)
+		else if (num * minus < (size_t)(-2147483648))
 			return (0);
 	}
-	if (num <= (size_t)INT_MAX)
+	if (num <= (size_t)(+2147483647))
 	{
 		return ((int)num);
 	}
-	else if (num > (size_t)INT_MAX)
+	else if (num > (size_t)(+2147483647))
 		return (-1);
 	return (0);
 }
