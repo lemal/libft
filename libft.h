@@ -13,6 +13,14 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <string.h>
+typedef struct t_storage
+{
+	size_t	count_src;
+	size_t	count_dst;
+	size_t	i;
+	size_t	j;
+	size_t	dst_temp;
+}	t_init;
 int		ft_isalpha(int	c);
 int		ft_isdigit(int	c);
 int		ft_isalnum(int	c);
@@ -42,10 +50,12 @@ char	*ft_substr(char	const	*s, unsigned	int	start,
 char	*ft_strjoin(char	const	*s1, char	const	*s2);
 char	*ft_strtrim(char	const	*s1, char	const	*set);
 char	**ft_split(char	const	*s, char	c);
+char	*ft_itoa(int	n);
+
 void	ft_striteri(char	*s, void	(*f)(unsigned	int, char*));
 void	ft_putchar_fd(char	c, int	fd);
 void	ft_putstr_fd(char	*s, int	fd);
 void	ft_putendl_fd(char	*s, int	fd);
 void	ft_putnbr_fd(int	n, int	fd);
-char	*ft_itoa(int	n);
+
 #endif
