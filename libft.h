@@ -13,7 +13,7 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <string.h>
-typedef struct t_storage
+typedef struct s_storage
 {
 	size_t	count_src;
 	size_t	count_dst;
