@@ -58,12 +58,3 @@ size_t	len)
 		return (ft_local_mem_to_str(s, start, len));
 	return (NULL);
 }
-
-/*
-int main(void) 
-{
-	char str[] = "lorem ipsum dolor sit amet";
-
-	printf("%s", ft_substr(str, 400, 20));
-}
-*/
