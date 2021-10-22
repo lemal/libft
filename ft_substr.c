@@ -14,7 +14,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static	size_t	ft_local_check_exist(char	const	*s, unsigned	int	start)
+static	size_t	ft_local_check_exist(char	const	*s, size_t	start,
+size_t	len)
 {
 	size_t	i;
 
@@ -23,6 +24,8 @@ static	size_t	ft_local_check_exist(char	const	*s, unsigned	int	start)
 		i++;
 	if (start > i)
 		return (-1);
+	if ((start + len) <= i)
+		return (len);
 	return (i);
 }
 
@@ -33,9 +36,16 @@ size_t	len)
 	size_t	j;
 	char	*ptr_to_first;
 
-	i = 0;
+	i = ft_local_check_exist(s, start, len);
 	j = start;
-	ptr_to_first = (char *)malloc(sizeof(char) * len + 1);
+	if (i == (size_t)(-1))
+	{
+		ptr_to_first = (char *)malloc(sizeof(char));
+		*ptr_to_first = '\0';
+		return (ptr_to_first);
+	}
+	ptr_to_first = (char *)malloc(sizeof(char) * i + 1);
+	i = 0;
 	if (ptr_to_first == NULL)
 		return (NULL);
 	while (s[j] && (i < len))
@@ -51,10 +61,5 @@ size_t	len)
 char	*ft_substr(char	const	*s, unsigned	int	start,
 size_t	len)
 {
-	size_t	strln;
-
-	strln = ft_local_check_exist(s, start);
-	if (strln != (size_t)(-1))
-		return (ft_local_mem_to_str(s, start, len));
-	return (NULL);
+	return (ft_local_mem_to_str(s, start, len));
 }
