@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
+#include "libft.h"
 
 static	int	ft_local_dig_cnt(int	cpy_n)
 {
@@ -49,19 +48,17 @@ char	*ft_itoa(int	n)
 	flag_n = 0;
 	if (n == 0)
 		i = 1;
-	if (n < 0)
+	else if (n < 0)
 		flag_n = 1;
 	ptr_to_first = (char *)malloc(sizeof(char) * (i + flag_n + 1));
 	if (ptr_to_first == NULL)
 		return (NULL);
-	flag_n = 0;
 	if (n < 0)
 	{
 		ptr_to_first[0] = '-';
 		n *= -1;
-		flag_n = 1;
 	}
 	ft_local_filler(n, ptr_to_first, i - 1, flag_n);
-	ptr_to_first[i + 1] = '\0';
+	ptr_to_first[i + flag_n] = '\0';
 	return (ptr_to_first);
 }
