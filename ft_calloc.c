@@ -12,7 +12,6 @@
 
 #include "libft.h"
 #include <errno.h>
-#include <stdlib.h>
 
 static	void	ft_local_bzero(void	*s, size_t	n)
 {
