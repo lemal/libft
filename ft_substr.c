@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 static	size_t	ft_local_check_exist(char	const	*s, size_t	start,
 size_t	len)
