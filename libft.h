@@ -21,6 +21,13 @@ typedef struct s_storage
 	size_t	j;
 	size_t	dst_temp;
 }	t_init;
+typedef struct s_strim_store
+{
+	size_t	i;
+	size_t	lenstr;
+	size_t	new_length;
+	char	*ptr_to_first;
+}	t_init_trim;
 int		ft_isalpha(int	c);
 int		ft_isdigit(int	c);
 int		ft_isalnum(int	c);
@@ -52,7 +59,7 @@ char	*ft_strtrim(char	const	*s1, char	const	*set);
 char	**ft_split(char	const	*s, char	c);
 char	*ft_itoa(int	n);
 char	*ft_strmapi(char	const	*s,	char	(*f)(unsigned
-			int, char));
+				int, char));
 void	ft_striteri(char	*s, void	(*f)(unsigned	int, char*));
 void	ft_putchar_fd(char	c, int	fd);
 void	ft_putstr_fd(char	*s, int	fd);
