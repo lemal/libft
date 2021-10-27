@@ -34,38 +34,129 @@ static	size_t	ft_local_word_count(char	const	*s, char	c)
 	return (word_count);
 }
 
-static	size_t	ft_local_char_count(char	const	*s, char	c, size_t	start)
+static	char	*ft_local_mem_trim(char	*ptr_long, size_t	size)
 {
+	char	*ptr_optimal;
 	size_t	i;
-	size_t	char_count;
 
-	i = start;
-	char_count = 0;
-	while ((s[i]) != c) || s[i])
+	i = 0;
+	ptr_optimal = (char *)malloc(sizeof(char) * (size + 1));
+	while (ptr_long[i])
 	{
-		if (s[i] != c)
-			char_count++;
+		ptr_optimal[i] = ptr_long[i];
 		i++;
 	}
-	return (char_count);
+	ptr_optimal[i] = '\0';
+	free(ptr_long);
+	return (ptr_optimal);
 }
 
-// char	**ft_split(char	const	*s, char	c)
-// {
-// 	char	**ptr_doubl_arr;
-// 	size_t	word_count;
-// 	size_t	alnum_count;
-
-// 	word_count = ft_local_word_count(s, c);
-// 	ptr_to_doubl_arr = (char **)malloc(sizeof(char) * (word_count + 1));
-//	return (ptr_to_doubl_arr);
-// }
-
-int main(void)
+static	void	ft_local_free_all(char	**ptr_to_first)
 {
-	char	str[] = "4 is the  \2 fifth  or";
+	size_t	i;
 
-	printf("%zu\n", ft_local_word_count(str, ' '));
-	printf("%zu\n", ft_local_char_count(str, ' ', 0));
+	i = 0;
+	while (ptr_to_first[i])
+	{
+		free((char *)ptr_to_first[i]);
+		i++;
+	}
+	free(ptr_to_first);
+}
+
+static	int	ft_local_subarr_fill(char	const	**s, char	**ptr,
+				char	c, size_t	subarr_num)
+{
+	size_t	i;
+	size_t	s_len;
+
+	i = 0;
+	s_len = 0;
+	while ((*s)[s_len])
+		s_len++;
+	ptr[subarr_num] = (char *)malloc(sizeof(char) * s_len + 1);
+	if (ptr == NULL)
+	{
+		ft_local_free_all(ptr);
+		return (-1);
+	}
+	while (**s == c)
+		(*s)++;
+	while ((*(*s) != c) && **s)
+	{
+		ptr[subarr_num][i] = **s;
+		i++;
+		(*s)++;
+	}
+	ptr[subarr_num][i] = '\0';
+	ptr[subarr_num] = ft_local_mem_trim(ptr[subarr_num], i);
 	return (0);
 }
+
+char	**ft_split(char	const	*s, char	c)
+{
+	size_t	s_len;
+	size_t	word_count;
+	char	**ptr;
+	size_t	subarr_num;
+
+	subarr_num = 0;
+	s_len = 0;
+	word_count = ft_local_word_count(s, c);
+	while (s[s_len])
+		s_len++;
+	ptr = (char **)malloc(sizeof(char *) * (word_count + 1));
+	if (ptr == NULL)
+		return (NULL);
+	while (subarr_num < word_count)
+	{
+		if (ft_local_subarr_fill(&s, ptr, c, subarr_num) == -1)
+			return (0);
+		subarr_num++;
+	}
+	ptr[subarr_num] = NULL;
+	return (ptr);
+}
+
+/*
+char	**ft_split(char	const	*s, char	c)
+{
+	size_t	s_len;
+	size_t	i;
+	size_t	word_count;
+	char	**ptr;
+	size_t	subarr_num;
+
+	subarr_num = 0;
+	s_len = 0;
+	word_count = ft_local_word_count(s, c);
+	while (s[s_len])
+		s_len++;
+	ptr = (char **)malloc(sizeof(char *) * (word_count + 1));
+	if (ptr == NULL)
+		return (NULL);
+	while (subarr_num < word_count)
+	{
+		i = 0;
+		ptr[subarr_num] = (char *)malloc(sizeof(char) * s_len + 1);
+		if (ptr == NULL)
+		{
+			ft_local_free_all(ptr);
+			return (NULL);
+		}
+		while (*s == c)
+			s++;
+		while ((*s != c) && *s)
+		{
+			ptr[subarr_num][i] = *s;
+			i++;
+			s++;
+		}
+		ptr[subarr_num][i] = '\0';
+		ptr[subarr_num] = ft_local_mem_trim(ptr[subarr_num], i);
+		subarr_num++;
+	}
+	ptr[subarr_num] = NULL;
+	return (ptr);
+}
+*/
