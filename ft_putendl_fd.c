@@ -9,14 +9,16 @@
 /*   Updated: 2021/10/18 13:19:05 by tapulask         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
+
+#include "libft.h"
 
 void	ft_putendl_fd(char	*s, int	fd)
 {
-	while (*s)
+	while ((s != NULL) && *s)
 	{
 		write(fd, &(*s), 1);
 		s++;
 	}
-	write(fd, "\n", 1);
+	if (s != NULL)
+		write(fd, "\n", 1);
 }

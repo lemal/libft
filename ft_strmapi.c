@@ -9,6 +9,7 @@
 /*   Updated: 2021/10/20 16:43:28 by tapulask         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 static	size_t	ft_local_strlen(char	const	*s)
@@ -28,6 +29,8 @@ char	*ft_strmapi(char	const	*s,	char	(*f)(unsigned
 	size_t	size_str;
 	char	*ptr_to_first;
 
+	if (s == NULL || f == NULL)
+		return (NULL);
 	i = 0;
 	if (*s == '\0')
 	{
@@ -35,8 +38,6 @@ char	*ft_strmapi(char	const	*s,	char	(*f)(unsigned
 		*ptr_to_first = '\0';
 		return (ptr_to_first);
 	}
-	if (s == NULL || f == NULL)
-		return (NULL);
 	size_str = ft_local_strlen(s);
 	ptr_to_first = (char *)malloc(sizeof(char) * (size_str + 1));
 	if (ptr_to_first == NULL)

@@ -9,11 +9,12 @@
 /*   Updated: 2021/10/18 13:18:26 by tapulask         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
+
+#include "libft.h"
 
 void	ft_putstr_fd(char	*s, int	fd)
 {
-	while (*s)
+	while ((s != NULL) && *s)
 	{	
 		write(fd, &(*s), 1);
 		s++;

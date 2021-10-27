@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static	size_t	ft_local_word_count(char	const	*s, char	c)
 {
@@ -100,6 +99,8 @@ char	**ft_split(char	const	*s, char	c)
 	char	**ptr;
 	size_t	subarr_num;
 
+	if (s == NULL)
+		return (NULL);
 	subarr_num = 0;
 	s_len = 0;
 	word_count = ft_local_word_count(s, c);
@@ -111,52 +112,9 @@ char	**ft_split(char	const	*s, char	c)
 	while (subarr_num < word_count)
 	{
 		if (ft_local_subarr_fill(&s, ptr, c, subarr_num) == -1)
-			return (0);
-		subarr_num++;
-	}
-	ptr[subarr_num] = NULL;
-	return (ptr);
-}
-
-/*
-char	**ft_split(char	const	*s, char	c)
-{
-	size_t	s_len;
-	size_t	i;
-	size_t	word_count;
-	char	**ptr;
-	size_t	subarr_num;
-
-	subarr_num = 0;
-	s_len = 0;
-	word_count = ft_local_word_count(s, c);
-	while (s[s_len])
-		s_len++;
-	ptr = (char **)malloc(sizeof(char *) * (word_count + 1));
-	if (ptr == NULL)
-		return (NULL);
-	while (subarr_num < word_count)
-	{
-		i = 0;
-		ptr[subarr_num] = (char *)malloc(sizeof(char) * s_len + 1);
-		if (ptr == NULL)
-		{
-			ft_local_free_all(ptr);
 			return (NULL);
-		}
-		while (*s == c)
-			s++;
-		while ((*s != c) && *s)
-		{
-			ptr[subarr_num][i] = *s;
-			i++;
-			s++;
-		}
-		ptr[subarr_num][i] = '\0';
-		ptr[subarr_num] = ft_local_mem_trim(ptr[subarr_num], i);
 		subarr_num++;
 	}
 	ptr[subarr_num] = NULL;
 	return (ptr);
 }
-*/

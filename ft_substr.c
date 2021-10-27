@@ -59,5 +59,7 @@ size_t	len)
 char	*ft_substr(char	const	*s, unsigned	int	start,
 size_t	len)
 {
+	if (s == NULL)
+		return (NULL);
 	return (ft_local_mem_to_str(s, start, len));
 }

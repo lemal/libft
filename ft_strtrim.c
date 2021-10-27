@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static	size_t	ft_local_strlen(char	const	*str)
 {
@@ -52,30 +51,34 @@ static	char	*ft_local_fill(char	*str, char	const	*src,
 	return (str);
 }
 
-static	int	ft_local_empty_chk(char	const	*s1, size_t	*i)
+static	char	*ft_local_empty_chk(char	const	*s1,
+				size_t	*i, char	const	*set)
 {
-	if (*s1 == '\0')
+	t_init_trim	trim_store;
+
+	if ((s1 == NULL) || (set == NULL))
+		return (NULL);
+	else if (*s1 == '\0')
 	{
 		*i = 0;
-		return ((int)i);
+		trim_store.ptr_to_first = (char *)malloc(sizeof(char) * 1);
+		if (trim_store.ptr_to_first == NULL)
+			return (NULL);
+		*trim_store.ptr_to_first = '\0';
+		return (trim_store.ptr_to_first);
 	}
-	else if (s1 == NULL)
-		return (-1);
-	return (1);
+	return ((char *)s1);
 }
 
 char	*ft_strtrim(char	const	*s1, char	const	*set)
 {
 	t_init_trim	trim_store;
 
-	if (ft_local_empty_chk(s1, &trim_store.i) == 0)
-	{
-		trim_store.ptr_to_first = (char *)malloc(sizeof(char) * 1);
-		*trim_store.ptr_to_first = '\0';
-		return (trim_store.ptr_to_first);
-	}
-	else if (ft_local_empty_chk(s1, &trim_store.i) == -1)
+	trim_store.ptr_to_first = ft_local_empty_chk(s1, &trim_store.i, set);
+	if (trim_store.ptr_to_first == NULL)
 		return (NULL);
+	else if (trim_store.ptr_to_first != s1)
+		return (trim_store.ptr_to_first);
 	trim_store.i = 0;
 	trim_store.lenstr = ft_local_strlen(s1);
 	while (s1[trim_store.i] && (ft_local_set_check(s1[trim_store.i], set) == 0))

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <errno.h>
 
 static	void	ft_local_bzero(void	*s, size_t	n)
 {
@@ -36,10 +35,7 @@ void	*ft_calloc(size_t	count, size_t	size)
 
 	ptr = malloc(size * count);
 	if (ptr == NULL)
-	{
-		errno = ENOMEM;
 		return ((void *)0);
-	}
 	ft_local_bzero(ptr, size * count);
 	return (ptr);
 }

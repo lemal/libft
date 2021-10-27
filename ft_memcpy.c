@@ -9,6 +9,7 @@
 /*   Updated: 2021/10/08 10:33:14 by tapulask         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 void	*ft_memcpy(void	*dst, const	void	*src, size_t	n)
