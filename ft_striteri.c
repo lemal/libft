@@ -10,14 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 void	ft_striteri(char	*s, void	(*f)(unsigned	int, char*))
 {
 	unsigned int	indx;
 
-	indx = 0;
-	while (s[indx])
+	if (s != NULL)
 	{
-		f(indx, &s[indx]);
-		indx++;
+		indx = 0;
+		while (s[indx])
+		{
+			f(indx, &s[indx]);
+			indx++;
+		}
 	}
 }

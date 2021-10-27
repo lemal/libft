@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <errno.h>
 
 char	*ft_strdup(const	char	*s1)
 {
@@ -24,10 +23,7 @@ char	*ft_strdup(const	char	*s1)
 		count++;
 	ptr_to_first = malloc(sizeof(char) * (count + 1));
 	if (ptr_to_first == NULL)
-	{
-		errno = ENOMEM;
 		return (NULL);
-	}
 	count = 0;
 	while (s1[count])
 	{
