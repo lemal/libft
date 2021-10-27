@@ -34,19 +34,21 @@ static	size_t	ft_local_word_count(char	const	*s, char	c)
 	return (word_count);
 }
 
-static	size_t	ft_local_char_count(char	const	*s, char	c, size_t	i)
+static	char	*ft_local_mem_trim(char	*ptr_long, size_t	size)
 {
-	size_t	j;
+	char	*ptr_optimal;
+	size_t	i;
 
-	j = 0;
-	while ((s[i] == c) && s[i])
-		i++;
-	while ((s[i] != c) && s[i])
+	i = 0;
+	ptr_optimal = (char *)malloc(sizeof(char) * (size + 1));
+	while (ptr_long[i])
 	{
+		ptr_optimal[i] = ptr_long[i];
 		i++;
-		j++;
 	}
-	return (j);
+	ptr_optimal[i] = '\0';
+	free(ptr_long);
+	return (ptr_optimal);
 }
 
 static	void	ft_local_free_all(char	**ptr_to_first)
@@ -62,159 +64,99 @@ static	void	ft_local_free_all(char	**ptr_to_first)
 	free(ptr_to_first);
 }
 
-// static	void	ft_local_subarr_cpy(char	const	*s, char	*ptr_to_first, char	c, size_t	i)
-// {
-// 	size_t	k;
+static	int	ft_local_subarr_fill(char	const	**s, char	**ptr,
+				char	c, size_t	subarr_num)
+{
+	size_t	i;
+	size_t	s_len;
 
-// 	k = 0;
-// 	while ((s[i] == c) && s[i])
-// 		i++;
-// 	while ((s[i] != c) && s[i])
-// 	{
-// 		ptr_to_first[k] = s[i];
-// 		i++;
-// 		k++;
-// 	}
-// }
+	i = 0;
+	s_len = 0;
+	while ((*s)[s_len])
+		s_len++;
+	ptr[subarr_num] = (char *)malloc(sizeof(char) * s_len + 1);
+	if (ptr == NULL)
+	{
+		ft_local_free_all(ptr);
+		return (-1);
+	}
+	while (**s == c)
+		(*s)++;
+	while ((*(*s) != c) && **s)
+	{
+		ptr[subarr_num][i] = **s;
+		i++;
+		(*s)++;
+	}
+	ptr[subarr_num][i] = '\0';
+	ptr[subarr_num] = ft_local_mem_trim(ptr[subarr_num], i);
+	return (0);
+}
 
 char	**ft_split(char	const	*s, char	c)
 {
-	char	**ptr_doubl_arr;
+	size_t	s_len;
 	size_t	word_count;
-	size_t	alnum_count;
-	// size_t	index;
-	size_t	i;
+	char	**ptr;
+	size_t	subarr_num;
 
-	i = 0;
+	subarr_num = 0;
+	s_len = 0;
 	word_count = ft_local_word_count(s, c);
-	ptr_doubl_arr = (char **)malloc(sizeof(char *) * (word_count + 1));
-	if (ptr_doubl_arr == NULL)
+	while (s[s_len])
+		s_len++;
+	ptr = (char **)malloc(sizeof(char *) * (word_count + 1));
+	if (ptr == NULL)
 		return (NULL);
-	// index = 0;
-	alnum_count = ft_local_char_count(s, c, 0);
-	ptr_doubl_arr[0] = (char *)malloc(sizeof(char) * (alnum_count + 1));
-	if (ptr_doubl_arr[0] == NULL)
+	while (subarr_num < word_count)
 	{
-		ft_local_free_all(ptr_doubl_arr);
-		return (NULL);
+		if (ft_local_subarr_fill(&s, ptr, c, subarr_num) == -1)
+			return (0);
+		subarr_num++;
 	}
-	*ptr_doubl_arr[0] = 'H';
-	*ptr_doubl_arr[1] = '\0';
-	//ft_local_subarr_cpy(s, *ptr_doubl_arr, c, 0);
-	printf("%zu\n%zu\n", alnum_count, word_count);
-	return (ptr_doubl_arr);
-}
-
-int main(void)
-{
-	// size_t	i;
-	// char	**ptr;
-	// char	*str = "           ";
-
-	// i = 0;
-	// ptr = ft_split(str, ' ');
-	// while(i == 0)
-	// {
-	// 	printf("%s", ptr[i]);
-	// 	i++;
-	// }
-	printf("%s", *ft_split("  HELLO  World", ' '));
-	return (0);
+	ptr[subarr_num] = NULL;
+	return (ptr);
 }
 
 /*
 char	**ft_split(char	const	*s, char	c)
 {
-	char	**ptr_doubl_arr;
-	size_t	word_count;
-	size_t	alnum_count;
-	size_t	index;
+	size_t	s_len;
 	size_t	i;
+	size_t	word_count;
+	char	**ptr;
+	size_t	subarr_num;
 
-	i = 0;
+	subarr_num = 0;
+	s_len = 0;
 	word_count = ft_local_word_count(s, c);
-	ptr_doubl_arr = (char **)malloc(sizeof(char *) * (word_count + 1));
-	if (ptr_doubl_arr == NULL)
+	while (s[s_len])
+		s_len++;
+	ptr = (char **)malloc(sizeof(char *) * (word_count + 1));
+	if (ptr == NULL)
 		return (NULL);
-	index = 0;
-	while (s[index])
+	while (subarr_num < word_count)
 	{
-		alnum_count = ft_local_char_count(s, c, index);
-		ptr_doubl_arr[i] = (char *)malloc(sizeof(char) * (alnum_count + 1));
-		if (ptr_doubl_arr[i] == NULL)
+		i = 0;
+		ptr[subarr_num] = (char *)malloc(sizeof(char) * s_len + 1);
+		if (ptr == NULL)
 		{
-			ft_local_free_all(ptr_doubl_arr);
+			ft_local_free_all(ptr);
 			return (NULL);
 		}
-		ft_local_subarr_cpy(s, ptr_doubl_arr[i], c, alnum_count);
-		index++;
-		i++;
+		while (*s == c)
+			s++;
+		while ((*s != c) && *s)
+		{
+			ptr[subarr_num][i] = *s;
+			i++;
+			s++;
+		}
+		ptr[subarr_num][i] = '\0';
+		ptr[subarr_num] = ft_local_mem_trim(ptr[subarr_num], i);
+		subarr_num++;
 	}
-	ptr_doubl_arr[i] = NULL;
-	return (ptr_doubl_arr);
-}
-
-static	size_t	ft_local_char_count(char	const	*s, char	c, size_t	*i)
-{
-	size_t	j;
-
-	j = 0;
-	while ((s[*i] == c) && s[*i])
-	{
-		*i++;
-		j++;
-	}
-	while ((s[*i] != c) && s[*i])
-		*i++;
-	return (*i - j);
-}
-
-
-char	**ft_split(char	const	*s, char	c)
-{
-	char	**ptr_doubl_arr;
-	size_t	word_count;
-	size_t	alnum_count;
-	size_t	index;
-	size_t	i;
-
-	i = 0;
-	word_count = ft_local_word_count(s, c);
-	ptr_to_doubl_arr = (char **)malloc(sizeof(char *) * (word_count + 1));
-	if (ptr_to_doubl_arr == NULL)
-		return (NULL);
-	index = 0;
-	while (s[index])
-	{
-		alnum_count = ft_local_char_count(s, c, &index);
-		ptr_to_doubl_arr[i] = (char *)malloc(sizeof(char) * (alnum_count + 1));
-		// if (*ptr_to_doubl_arr == NULL)
-		// {
-		// 	ft_local_free_all(ptr_to_doubl_arr, word_count);
-		// 	return (NULL);
-		// }
-		ft_local_fill_curr(ptr_doubl_arr[i], s, c, alnum_count);
-		index++;
-		i++;
-	}
-	ptr_to_doubl_arr[i] = NULL;
-	return (ptr_to_doubl_arr);
-}
-
-static	size_t	ft_local_char_count(char	const	*s, char	c, size_t	*start)
-{
-	size_t	j;
-	size_t	*i;
-
-	j = 0;
-	*i = *start;
-	while ((s[*i] == c) && s[*i])
-	{
-		*i++;
-		j++;
-	}
-	while ((s[*i] != c) && s[*i])
-		*i++;
-	return (*i - j);
+	ptr[subarr_num] = NULL;
+	return (ptr);
 }
 */

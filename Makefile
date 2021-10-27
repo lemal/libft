@@ -11,14 +11,15 @@ SRCS	=	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 NAME	=	libft.a
 HDR		=	libft.h
 
-OBJS	=	${SRCS:.c=.o}
+OBJS	=	${SRCS:%.c=%.o}
 
+CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
 
 RM		= rm -f
  
-%.o:	%.c ${HDR}
-	cc ${CFLAGS} -I${HDR} -c $< -o $@
+%.o:%.c ${HDR} Makefile
+	${CC} ${CFLAGS} -c $< -o $@
 
 all:	${NAME}
 
