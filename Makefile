@@ -18,14 +18,14 @@ CFLAGS	= -Wall -Wextra -Werror
 
 RM		= rm -f
  
-%.o:%.c ${HDR} Makefile
-	${CC} ${CFLAGS} -c $< -o $@
-
 all:	${NAME}
 
 ${NAME}	:	${OBJS} ${HDR}
 	ar rc  ${NAME} $?
 	ranlib ${NAME}
+
+%.o:%.c ${HDR} Makefile
+	${CC} ${CFLAGS} -c $< -o $@
 
 clean:	
 	${RM} ${OBJS}
