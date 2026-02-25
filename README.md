@@ -1,9 +1,4 @@
 # libft
-2021 21 school project zero. Personal library and first makefile experiments
+2021 Ecole 42 project zero. A library of small yet useful functions and first makefile experiments
 
-The aim was to write a set of functions: some were reproductions of ones from string.h and others, some were built according to a specification.
-
-_________________________
-Первый проект в Школе 21!
-
-Создал свою библиотеку. Некоторые из уже функций уже существуют в других библиотеках вроде string.h, но некоторые были написаны под задание и с применением доступных тестов.
+Some reproductions from string.h and other standard libs, some custom 42 syllabus-based.
